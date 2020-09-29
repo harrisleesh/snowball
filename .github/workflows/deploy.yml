@@ -29,7 +29,10 @@ jobs:
     - name: Make directory for deployment
       run: mkdir -p ${PROJECT_NAME}-deployment
     - name: Move JAR file
-      run: cp ${PROJECT_NAME}/build/libs/*.jar ${PROJECT_NAME}-deployment/
+      run: |
+        pwd
+        ls
+        cp ${PROJECT_NAME}/build/libs/*.jar ${PROJECT_NAME}-deployment/
     - name: Move appspec.yml
       run: cp ${PROJECT_NAME}/appspec.yml ${PROJECT_NAME}-deployment/
     - name: Move scripts directory
