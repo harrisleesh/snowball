@@ -32,11 +32,11 @@ jobs:
       run: |
         pwd
         ls
-        cp ${PROJECT_NAME}/build/libs/*.jar ${PROJECT_NAME}-deployment/
+        cp build/libs/*.jar ${PROJECT_NAME}-deployment/
     - name: Move appspec.yml
-      run: cp ${PROJECT_NAME}/appspec.yml ${PROJECT_NAME}-deployment/
+      run: cp appspec.yml ${PROJECT_NAME}-deployment/
     - name: Move scripts directory
-      run: cp -r ${PROJECT_NAME}/scripts ${PROJECT_NAME}-deployment/
+      run: cp -r scripts ${PROJECT_NAME}-deployment/
     - name: Make zip file
       run: zip -r -j ${PROJECT_NAME}-deployment ${PROJECT_NAME}-deployment/*
 
