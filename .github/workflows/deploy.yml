@@ -32,7 +32,7 @@ jobs:
       run: |
         pwd
         ls
-        cp build/libs/*.jar ${PROJECT_NAME}-deployment/
+        cp -r build ${PROJECT_NAME}-deployment/
     - name: Move appspec.yml
       run: cp appspec.yml ${PROJECT_NAME}-deployment/
     - name: Move scripts directory
