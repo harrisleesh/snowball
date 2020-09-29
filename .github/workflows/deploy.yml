@@ -36,7 +36,7 @@ jobs:
     - name: Move appspec.yml
       run: cp appspec.yml ${PROJECT_NAME}-deployment/
     - name: Move scripts directory
-      run: cp -r scripts ${PROJECT_NAME}-deployment/scripts
+      run: cp -r scripts ${PROJECT_NAME}-deployment/scripts/
     - name: Make zip file
       run: zip -r -j ${PROJECT_NAME}-deployment ${PROJECT_NAME}-deployment/*
 
