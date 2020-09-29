@@ -49,6 +49,6 @@ jobs:
     - name: Upload to S3
       run: aws s3 cp ${PROJECT_NAME}-deployment.zip s3://${S3_BUCKET_NAME}/${PROJECT_NAME}/${PROJECT_NAME}-${GITHUB_SHA}.zip --region ap-northeast-2
     - name: Code Deploy
-      run: aws deploy create-deployment --application-name ${PROJECT_NAME}-deploy --deployment-group-name develop --region ap-northeast-2 --s3-location bucket=${$S3_BUCKET_NAME},bundleType=zip,key=${PROJECT_NAME}/${PROJECT_NAME}-${GITHUB_SHA}.zip
+      run: aws deploy create-deployment --application-name ${PROJECT_NAME}-deploy --deployment-group-name develop --region ap-northeast-2 --s3-location bucket=${S3_BUCKET_NAME},bundleType=zip,key=${PROJECT_NAME}/${PROJECT_NAME}-${GITHUB_SHA}.zip
     - name: Clear Deploy DIR
       run: rm -rf ${PROJECT_NAME}-deployment
