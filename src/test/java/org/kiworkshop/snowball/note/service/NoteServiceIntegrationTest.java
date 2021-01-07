@@ -6,6 +6,8 @@ import org.kiworkshop.snowball.IntegrationTest;
 import org.kiworkshop.snowball.note.controller.dto.NoteRequestDto;
 import org.kiworkshop.snowball.note.controller.dto.NoteRequestDtoFixture;
 import org.kiworkshop.snowball.note.controller.dto.NoteResponseDto;
+import org.kiworkshop.snowball.stockdetail.entity.StockDetailFixture;
+import org.kiworkshop.snowball.stockdetail.entity.StockDetailRepository;
 import org.kiworkshop.snowball.stocktransaction.entity.StockTransactionRepository;
 import org.kiworkshop.snowball.user.Entity.UserFixture;
 import org.kiworkshop.snowball.user.entity.User;
@@ -26,11 +28,15 @@ public class NoteServiceIntegrationTest extends IntegrationTest {
     private NoteService noteService;
     @Autowired
     private StockTransactionRepository stockTransactionRepository;
+    @Autowired
+    private StockDetailRepository stockDetailRepository;
 
     private User user;
 
     @BeforeEach
     void setUp() {
+        stockTransactionRepository.deleteAll();
+        stockDetailRepository.save(StockDetailFixture.create());
         user = userRepository.save(UserFixture.create());
     }
 

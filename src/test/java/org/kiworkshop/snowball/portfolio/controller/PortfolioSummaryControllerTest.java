@@ -50,7 +50,7 @@ class PortfolioSummaryControllerTest extends ControllerTest{
     void getStockDetails() throws Exception {
         Long userId = 1L;
         // given
-        given(portfolioSummaryService.getPortfolioSummary(userId)).willReturn(PortfolioStockResponseDtoFixture.createList());
+        given(portfolioSummaryService.getPortfolioSummary()).willReturn(PortfolioStockResponseDtoFixture.createList());
         given(userRepository.findByEmail(anyString())).willReturn(Optional.of(userFixture));
 
         // when & then

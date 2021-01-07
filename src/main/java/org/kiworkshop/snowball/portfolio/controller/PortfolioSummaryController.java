@@ -17,7 +17,7 @@ public class PortfolioSummaryController {
     private final PortfolioSummaryService portfolioSummaryService;
 
     @GetMapping("/portfolio-summary")
-    public List<PortfolioStockResponseDto> getPortfolioSummary(@LoginUser User user) {
-        return portfolioSummaryService.getPortfolioSummary(user.getId());
+    public List<PortfolioStockResponseDto> getPortfolioSummary() {
+        return portfolioSummaryService.getPortfolioSummary();
     }
 }

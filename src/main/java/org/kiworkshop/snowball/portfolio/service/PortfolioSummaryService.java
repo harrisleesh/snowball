@@ -1,11 +1,17 @@
 package org.kiworkshop.snowball.portfolio.service;
 
 import lombok.RequiredArgsConstructor;
+import org.kiworkshop.snowball.auth.IAuthenticationFacade;
 import org.kiworkshop.snowball.common.type.TransactionType;
 import org.kiworkshop.snowball.portfolio.controller.dto.PortfolioStockResponseDto;
+import org.kiworkshop.snowball.portfolio.util.ProfitCalculator;
 import org.kiworkshop.snowball.stockdetail.entity.StockDetail;
 import org.kiworkshop.snowball.stocktransaction.entity.StockTransaction;
 import org.kiworkshop.snowball.stocktransaction.entity.StockTransactionRepository;
+import org.kiworkshop.snowball.user.entity.User;
+import org.kiworkshop.snowball.user.entity.UserRepository;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -16,9 +22,13 @@ import java.util.stream.Collectors;
 public class PortfolioSummaryService {
 
     private final StockTransactionRepository stockTransactionRepository;
+    private final IAuthenticationFacade iAuthenticationFacade;
+    private final ProfitCalculator profitCalculator;
 
-    public List<PortfolioStockResponseDto> getPortfolioSummary(Long userId) {
-        List<StockTransaction> stockTransactions = stockTransactionRepository.findByUserId(userId);
+    public List<PortfolioStockResponseDto> getPortfolioSummary() {
+
+        User user = iAuthenticationFacade.getUser();
+        List<StockTransaction> stockTransactions = stockTransactionRepository.findByUserId(user.getId());
         Set<Map.Entry<StockDetail, List<StockTransaction>>> stockTransactionGroups = createStockTransactionGroups(stockTransactions);
         List<PortfolioStockResponseDto> portfolioStockResponseDtos = new ArrayList<>();
 
